@@ -1,32 +1,42 @@
 <template>
-  <div :class="[button, specialButton]" :style="specialButtonStyle">
+  <div
+    :class="[button, specialButton]"
+    :style="specialButtonStyle"
+    @click="pressed()"
+  >
     {{ name }}
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
+import { mapState } from "vuex";
 
-@Component
+@Component({
+  computed: mapState(["text", "isCapsOrShiftOn"]),
+})
 export default class keyboardKey extends Vue {
   @Prop() private name!: string;
   button = "button";
+  text!: string;
+  isCapsOrShiftOn!: boolean;
   specialButton = "standardButton";
   created() {
     if (this.specialButtonStyle()) {
       this.specialButton = this.name;
-      console.log(this.specialButtonStyle(), this.name);
     }
   }
+
   specialButtonStyle(): boolean {
     switch (this.name) {
-      case "shift":
+      case "shift_l":
+        return true;
+      case "shift_r":
         return true;
       case "caps":
         return true;
       case "tab":
         return true;
-
       case "space":
         return true;
       case "backspace":
@@ -36,15 +46,52 @@ export default class keyboardKey extends Vue {
     }
     return false;
   }
+
+  pressed(): void {
+    switch (this.name) {
+      case "backspace":
+        this.$store.commit(
+          "updateText",
+          this.text.substring(0, this.text.length - 1)
+        );
+        break;
+      case "space":
+        this.$store.commit("updateText", this.text + " ");
+        break;
+      case "tab":
+        this.$store.commit("updateText", this.text + "  ");
+        break;
+      case "enter":
+        this.$store.commit("updateText", this.text + "\n");
+        break;
+      case "caps":
+       this.updateKeyboardKeys();
+        break;
+      case "shift_l":
+          this.updateKeyboardKeys();
+        break;
+      case "shift_r":
+          this.updateKeyboardKeys();
+        break;
+      default:
+        this.$store.commit("updateText", this.text + this.name);
+    }
+    if (this.name.match(/^[A-Za-z]+$/)) {
+      this.$store.commit("shuffleLetters");
+    }
+  }
+  updateKeyboardKeys(){
+      this.$store.commit("updateCapsFlag", !this.isCapsOrShiftOn);
+      this.$store.commit("updateKeyboardKeys");
+  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .button {
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   align-items: center;
-  background: #fff;
+  background: black;
   border-bottom: 1px solid #b5b5b5;
   border-radius: 5px;
   box-shadow: 0 0 3px -1px rgb(0 0 0 / 30%);
@@ -54,41 +101,42 @@ export default class keyboardKey extends Vue {
   height: 40px;
   justify-content: center;
   padding: 5px;
-  color: rgba(0, 0, 0, 0.7);
-  font-weight: 300;
-  font-size: 20px;
-  font-size: 17px;
+  color: white;
+  font-size: 15px;
   margin-right: 5px;
   flex-grow: 1;
 }
 
 .standardButton {
-  width: 20px;
-}
-.caps {
-  width: 35px;
+  width: 30px;
 }
 
-.shift {
-  width: 50px;
+.caps {
+  width: 60px;
 }
-.backspace {
+
+.shift_l {
   width: 80px;
 }
 
+.shift_r {
+  width: 80px;
+}
+
+.backspace {
+  width: 100px;
+}
+
 .enter {
-  width: 45px;
+  width: 60px;
 }
 
 .space {
-  width: 250px;
+  width: 450px;
 }
 
 .tab {
-  width: 23px;
+  width: 45px;
 }
 
-.shift {
-  width: 35px;
-}
 </style>

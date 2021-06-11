@@ -14,16 +14,16 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import keyboardRow from "./keyboardRow.vue";
-import { bigViewKeys } from "./model";
+import { mapState } from "vuex";
 @Component({
   components: {
     keyboardRow,
   },
+  computed: mapState(["bigViewKeys"]),
 })
 export default class Keyboard extends Vue {
   @Prop() private msg!: string;
-  items = [1, 2, 4, 5];
-  bigViewKeys = bigViewKeys;
+  bigViewKeys!: any;
 }
 </script>
 
@@ -42,7 +42,7 @@ export default class Keyboard extends Vue {
 
 .rows {
   padding: 5px;
-  background-color: white;
+  background-color: rgb(233, 224, 224);
   border-radius: 5px;
 }
 
