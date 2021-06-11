@@ -2,7 +2,6 @@
   <div class="container">
     <div class="main">
       <h1>Virtual keyboard</h1>
-
       <textarea
         id="textarea"
         class="input"
@@ -46,34 +45,8 @@ export default class Home extends Vue {
   padding: 20px;
   font-size: 20px;
   width: 50%;
-  min-width:  570px;
+  min-width: 570px;
   min-height: 200px;
-}
-
-@media (max-width: 745px) {
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  color: white;
-  box-sizing: border-box;
-}
-
-.main {
-    width: 100%;
-    padding: 10px;
-    min-width: 400px;
-}
- 
-.input {
-  padding: 20px;
-  font-size: 20px;
-  width: 50%;
-  min-width:  400px;
-  min-height: 200px;
-}
-
 }
 
 .main {
@@ -94,4 +67,5 @@ export default class Home extends Vue {
 .inputText {
   margin-bottom: 20px;
 }
+
 </style>

@@ -21,6 +21,7 @@ export default class keyboardKey extends Vue {
   text!: string;
   isCapsOrShiftOn!: boolean;
   specialButton = "standardButton";
+
   created() {
     if (this.specialButtonStyle()) {
       this.specialButton = this.name;
@@ -65,13 +66,13 @@ export default class keyboardKey extends Vue {
         this.$store.commit("updateText", this.text + "\n");
         break;
       case "caps":
-       this.updateKeyboardKeys();
+        this.updateKeyboardKeys();
         break;
       case "shift_l":
-          this.updateKeyboardKeys();
+        this.updateKeyboardKeys();
         break;
       case "shift_r":
-          this.updateKeyboardKeys();
+        this.updateKeyboardKeys();
         break;
       default:
         this.$store.commit("updateText", this.text + this.name);
@@ -80,9 +81,10 @@ export default class keyboardKey extends Vue {
       this.$store.commit("shuffleLetters");
     }
   }
-  updateKeyboardKeys(){
-      this.$store.commit("updateCapsFlag", !this.isCapsOrShiftOn);
-      this.$store.commit("updateKeyboardKeys");
+
+  updateKeyboardKeys():void {
+    this.$store.commit("updateCapsFlag", !this.isCapsOrShiftOn);
+    this.$store.commit("updateKeyboardKeys");
   }
 }
 </script>
@@ -138,5 +140,4 @@ export default class keyboardKey extends Vue {
 .tab {
   width: 45px;
 }
-
 </style>

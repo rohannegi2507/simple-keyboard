@@ -36,7 +36,6 @@ export default class Keyboard extends Vue {
   width: 100%;
   z-index: 3;
   max-width: 750px;
-  /* margin: 0 auto; */
   font-size: 20px;
 }
 
@@ -49,6 +48,7 @@ export default class Keyboard extends Vue {
 .row:not(:last-child) {
   margin-bottom: 5px;
 }
+
 .row {
   display: flex;
 }
