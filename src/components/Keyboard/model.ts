@@ -1,0 +1,48 @@
+export const bigViewKeys = {
+  row1: {
+    id: 1,
+    data: ["`", 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "-", "=", "backspace"],
+  },
+  row2: {
+    id: 2,
+    data: [
+      "tab",
+      "Q",
+      "W",
+      "E",
+      "R",
+      "T",
+      "U",
+      "Y",
+      "I",
+      "O",
+      "P",
+      "{",
+      "}",
+      "\\",
+    ],
+  },
+  row3: {
+    id: 3,
+    data: [
+      "caps",
+      "A",
+      "S",
+      "D",
+      "F",
+      "G",
+      "H",
+      "J",
+      "K",
+      "L",
+      ":",
+      '"',
+      "enter",
+    ],
+  },
+  row4: {
+    id: 4,
+    data: ["shift", "Z", "X", "C", "V", "B", "N", "M", ",", ".", "/", "shift"],
+  },
+  row5: { id: 5, data: [".com", "@", "space"] },
+};
