@@ -92,7 +92,6 @@ export default class keyboardKey extends Vue {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .button {
-  align-items: center;
   background: black;
   border-bottom: 1px solid #b5b5b5;
   border-radius: 5px;
@@ -100,13 +99,14 @@ export default class keyboardKey extends Vue {
   box-sizing: border-box;
   cursor: pointer;
   display: flex;
-  height: 40px;
   justify-content: center;
+  align-items: center;
   padding: 5px;
   color: white;
   font-size: 15px;
   margin-right: 5px;
   flex-grow: 1;
+  height: 40px;
 }
 
 .standardButton {
