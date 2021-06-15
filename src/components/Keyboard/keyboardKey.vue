@@ -77,7 +77,7 @@ export default class keyboardKey extends Vue {
       default:
         this.$store.commit("updateText", this.text + this.name);
     }
-    if (this.name.match(/^[A-Za-z]+$/)) {
+    if (this.name.match(/^[A-Za-z]+$/) && this.name.length ===1 ) {
       this.$store.commit("shuffleLetters");
     }
   }
